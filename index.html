@@ -109,7 +109,13 @@
 
   <div id="scheduler-container" style="display:none;">
     <div class="header-bar">
-      <h1 class="app-title">Simple Scheduler</h1>
+      <div class="header-left">
+        <h1 class="app-title">Simple Scheduler</h1>
+        <div class="view-switcher">
+          <button id="segWeekly" class="view-switch-btn active" onclick="setViewMode('weekly')">주간 뷰</button>
+          <button id="segMonthly" class="view-switch-btn" onclick="setViewMode('monthly')">월간 뷰</button>
+        </div>
+      </div>
       <div class="header-utilities">
         <div class="settings-container">
           <button id="settingsBtn" type="button" class="settings-btn" onclick="toggleSettingsMenu()" title="설정">⚙️</button>
@@ -133,19 +139,18 @@
           </div>
         </div>
         <div id="user-info">
-          <span id="userEmail"></span>
-          <button id="logoutBtn">로그아웃</button>
+          <div class="user-email-container">
+            <span id="userEmail"></span>
+          </div>
+          <button id="logoutBtn" title="로그아웃">로그아웃</button>
         </div>
       </div>
     </div>
+    <div class="header-divider"></div>
 
     <div class="control-bar">
-      <!-- 좌측: 세그먼트 컨트롤 (주간 | 월간) -->
-      <div class="control-bar-left">
-        <div class="segmented-control">
-          <button id="segWeekly" class="segment-btn active" onclick="setViewMode('weekly')">주간 뷰</button>
-          <button id="segMonthly" class="segment-btn" onclick="setViewMode('monthly')">월간 뷰</button>
-        </div>
+      <!-- 좌측: 세그먼트 컨트롤 (주간 | 월간) - 제거됨, header-bar로 이동 -->
+      <div class="control-bar-left" style="display:none;">
       </div>
       
       <!-- 중앙: 날짜 네비게이션 -->
