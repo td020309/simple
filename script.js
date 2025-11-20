@@ -1931,7 +1931,7 @@ function renderCalendar() {
     for (let i = 0; i < 7; i++) {
         const day = new Date(currentMonday.getTime() + i * DAY);
         const th = document.createElement('th');
-        const date = ymdLocal(day);
+        const dateStr = ymdLocal(day);
         
         // 오늘 날짜 확인
         const today = new Date();
@@ -1946,25 +1946,27 @@ function renderCalendar() {
         const thContent = document.createElement('div');
         thContent.className = 'th-content';
         
-        // 요일 이름
+        // 요일 이름 (짧게)
         const dayName = document.createElement('span');
         dayName.className = 'day-name';
         const dayNames = currentLanguage === 'ko' 
             ? ['일', '월', '화', '수', '목', '금', '토']
-            : ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+            : ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
         dayName.textContent = dayNames[day.getDay()];
         thContent.appendChild(dayName);
         
-        // 날짜 숫자
+        // 날짜 숫자 (월/일 형식)
         const dateNum = document.createElement('span');
         dateNum.className = 'date-num';
-        dateNum.textContent = day.getDate();
+        const month = day.getMonth() + 1;
+        const dayNum = day.getDate();
+        dateNum.textContent = `${month}/${dayNum}`;
         thContent.appendChild(dateNum);
         
         th.appendChild(thContent);
         
         // 특별한 날 블럭 표시
-        const sds = specialDays.filter(s => s.date === date);
+        const sds = specialDays.filter(s => s.date === dateStr);
         if (sds.length > 0) {
             const specialBlocksWrap = document.createElement('div');
             specialBlocksWrap.className = 'week-special-blocks';
